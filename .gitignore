@@ -9,6 +9,7 @@
 /vendor/
 /tmp-phpqa/
 /tools/php-cs-fixer/vendor/
+/.DS_Store
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
