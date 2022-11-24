@@ -1,0 +1,120 @@
+version: "3.4"
+
+services:
+  redis:
+    image: redis:alpine3.16
+    restart: unless-stopped
+  
+  php:
+    build:
+      context: .
+      target: app_php
+      args:
+        SYMFONY_VERSION: ${SYMFONY_VERSION:-}
+        STABILITY: ${STABILITY:-stable}
+    restart: unless-stopped
+    volumes:
+      - php_socket:/var/run/php
+    healthcheck:
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 30s
+    depends_on:
+      - redis
+      - database
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-!ChangeMe!}@database:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-14}
+      MERCURE_URL: ${CADDY_MERCURE_URL:-http://caddy/.well-known/mercure}
+      MERCURE_PUBLIC_URL: ${CADDY_MERCURE_PUBLIC_URL:-http://localhost/.well-known/mercure}
+      MERCURE_JWT_SECRET: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+      MERCURE_EXTRA_DIRECTIVES: |-
+        publish_origins "*"
+        cors_origins ${CADDY_MERCURE_CORS_ORIGIN:-"*"}
+        anonymous 1
+        
+  messenger:
+    restart: unless-stopped
+    command: [ "php", "bin/console", "messenger:consume", "async", "--limit=10", "-vv" ]
+    build:
+      context: .
+      target: app_messenger
+    depends_on:
+      - rabbitmq
+      - database
+    environment:
+      MESSENGER_TRANSPORT_DSN: ${MESSENGER_TRANSPORT_DSN:-amqp://guest:guest@rabbitmq:5672}
+      MESSENGER_TRANSPORT_FAILED_DSN: ${MESSENGER_TRANSPORT_FAILED_DSN:-doctrine://default?queue_name=failed}
+    volumes:
+      - php_socket:/var/run/php
+      
+  caddy:
+    build:
+      context: .
+      target: app_caddy
+    depends_on:
+      - php
+    environment:
+      SERVER_NAME: ${SERVER_NAME:-localhost, caddy:80}
+      MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+      MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+    restart: unless-stopped
+    volumes:
+      - php_socket:/var/run/php
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      # HTTP
+      - target: ${HTTP_PORT_TARGET:-80}
+        published: ${HTTP_PORT:-80}
+        protocol: tcp
+      # HTTPS
+      - target: 443
+        published: ${HTTPS_PORT:-443}
+        protocol: tcp
+      # HTTP/3
+      - target: 443
+        published: ${HTTP3_PORT:-443}
+        protocol: udp
+
+# Mercure is installed as a Caddy module, prevent the Flex recipe from installing another service
+###> symfony/mercure-bundle ###
+###< symfony/mercure-bundle ###
+
+  rabbitmq:
+    image: rabbitmq:${RABBITMQ_VERSION:-3.7}-management-alpine
+    restart: unless-stopped
+    ports: 
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-guest}
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq/data
+      - rabbitmq_data:/var/log/rabbitmq/log
+
+###> doctrine/doctrine-bundle ###
+  database:
+    image: postgres:${POSTGRES_VERSION:-14}-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-app}
+      # You should definitely change the password in production
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+      POSTGRES_USER: ${POSTGRES_USER:-app}
+    volumes:
+      - db-data:/var/lib/postgresql/data:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/postgresql/data:rw
+###< doctrine/doctrine-bundle ###
+
+volumes:
+  php_socket:
+  caddy_data:
+  caddy_config:
+###> symfony/mercure-bundle ###
+###< symfony/mercure-bundle ###
+  rabbitmq_data:
+###> doctrine/doctrine-bundle ###
+  db-data:
+###< doctrine/doctrine-bundle ###

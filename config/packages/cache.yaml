@@ -1,0 +1,28 @@
+framework:
+    cache:
+        app: cache.adapter.redis
+        system: cache.adapter.redis
+        # Pour tester le cache tout en étant en dev
+        # app: app.cache.adapter.redis
+        prefix_seed: '%kernel.environment%_data-ondemand'
+        default_redis_provider: '%env(resolve:REDIS_HOST)%'
+        pools:
+            view_cache_pool:
+                default_lifetime: '7 days'
+            doctrine.second_level_cache_pool:
+                adapter: cache.app
+
+    session:
+        handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler
+
+services:
+    app.cache.adapter.redis:
+        parent: 'cache.adapter.redis'
+        arguments:
+            $defaultLifetime: 604800
+        tags:
+            - { name: 'cache.pool', namespace: 'data-ondemand_cache' }
+
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
+        arguments:
+            - 'cache.adapter.redis'

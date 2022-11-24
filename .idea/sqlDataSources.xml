@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="02f6b7ff-5781-4773-9893-3ae23d6bfe02" name="data-ondemand@localhost Mapping">
+      <data-sources db="74515dd2-cdf3-4be9-b900-8a84fccc4c86" />
+      <scope>
+        <node kind="database" qname="data-ondemand">
+          <node kind="schema" qname="public" />
+        </node>
+      </scope>
+    </mapping>
+  </component>
+</project>
