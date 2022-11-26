@@ -1,13 +1,14 @@
 # Base Symfony 6.1
 
 Composants pré-installés :
-* PHP v.8.1;
-* PostgresSQL v.14;
+* PHP v.8.1 ;
+* PostgresSQL v.14 ;
 * Redis v.3.16 :
-    * Gestion du cache Symfony;
-* Caddy v.2;
-* RabbitMQ v.3.7;
-* TailwindCSS v.3.2.4 avec Webpack Encore;
+    * Gestion du cache Symfony ;
+    * Gestion des sessions ;
+* Caddy v.2 ;
+* RabbitMQ v.3.7 ;
+* TailwindCSS v.3.2.4 avec Webpack Encore.
 
 D'autres éléments comme `ESLint`, `Prettier`, `PHPStan` et `PHPUnit` sont installés.  
 Un fichier `make` est présent avec des commandes de bases pour gérer le projet. Pour connaitre les commandes, taper `make help` dans un terminal.
