@@ -17,18 +17,18 @@ Un fichier `make` est présent avec des commandes de bases pour gérer le projet
 
 ```shell
 make start
-make composer c=install
 make install-cs-fixer
-npm install
+npm install && npm run build
 ```
 
 ## Docker
 
 Compiler et lancer le serveur Docker :
 ```shell
-make build
-make up
-# make start ## Regroupe les deux commandes ci-dessus
+make build ## compile les containers
+make up ## Lance les containers
+make down ## Arrête les containers
+# make start ## Regroupe les commandes "make build" et "make up"
 ```
 
 ## Base de données
