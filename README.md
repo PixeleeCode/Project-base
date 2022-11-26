@@ -15,6 +15,7 @@ Un fichier `make` est présent avec des commandes de bases pour gérer le projet
 ## Installation
 
 ```shell
+make start
 make composer c=install
 make install-cs-fixer
 npm install
