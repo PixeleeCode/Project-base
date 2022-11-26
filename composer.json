@@ -21,6 +21,7 @@
         "symfony/amqp-messenger": "6.1.*",
         "symfony/asset": "6.1.*",
         "symfony/console": "6.1.*",
+        "symfony/doctrine-bridge": "6.1.*",
         "symfony/doctrine-messenger": "6.1.*",
         "symfony/dotenv": "6.1.*",
         "symfony/expression-language": "6.1.*",
