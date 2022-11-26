@@ -5,7 +5,7 @@
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:56715/data-ondemand</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:52441/data-ondemand</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
