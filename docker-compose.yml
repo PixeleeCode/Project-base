@@ -2,12 +2,12 @@ version: "3.4"
 
 services:
   redis:
-    container_name: project_base_redis
+    container_name: ${APP_NAME}_redis
     image: redis:alpine3.16
     restart: unless-stopped
   
   php:
-    container_name: project_base_php
+    container_name: ${APP_NAME}_php
     build:
       context: .
       target: app_php
@@ -36,7 +36,7 @@ services:
         anonymous 1
         
   messenger:
-    container_name: project_base_messenger
+    container_name: ${APP_NAME}_messenger
     restart: unless-stopped
     command: [ "php", "bin/console", "messenger:consume", "async", "--limit=10", "-vv" ]
     build:
@@ -52,7 +52,7 @@ services:
       - php_socket:/var/run/php
       
   caddy:
-    container_name: project_base_caddy
+    container_name: ${APP_NAME}_caddy
     build:
       context: .
       target: app_caddy
@@ -86,7 +86,7 @@ services:
 ###< symfony/mercure-bundle ###
 
   rabbitmq:
-    container_name: project_base_rabbitmq
+    container_name: ${APP_NAME}_rabbitmq
     image: rabbitmq:${RABBITMQ_VERSION:-3.7}-management-alpine
     restart: unless-stopped
     ports: 
@@ -101,7 +101,7 @@ services:
 
 ###> doctrine/doctrine-bundle ###
   database:
-    container_name: project_base_postgres_sql
+    container_name: ${APP_NAME}_postgres_sql
     image: postgres:${POSTGRES_VERSION:-14}-alpine
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
