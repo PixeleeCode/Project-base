@@ -7,13 +7,14 @@
         "@symfony/webpack-encore": "^4.0.0",
         "autoprefixer": "^10.4.13",
         "core-js": "^3.23.0",
-        "eslint": "^8.34.0",
+        "eslint": "^7.32.0 || ^8.2.0",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-config-prettier": "^8.6.0",
-        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-import": "^2.25.2",
         "eslint-plugin-prettier": "^4.2.1",
-        "postcss-loader": "^7.0.2",
+        "eslint-plugin-vue": "^9.9.0",
         "postcss": "^8",
+        "postcss-loader": "^7.0.2",
         "prettier": "^2.8.4",
         "purgecss": "^5.0.0",
         "regenerator-runtime": "^0.13.9",
@@ -29,18 +30,19 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "build": "encore production --progress",
+        "lint": "eslint --fix --ext .js"
     },
     "browserslist": [
-      "> 0.5%",
-      "last 2 versions",
-      "Firefox ESR",
-      "not dead"
+        "> 0.5%",
+        "last 2 versions",
+        "Firefox ESR",
+        "not dead"
     ],
     "dependencies": {
-        "tailwindcss": "^3.2.7",
         "autoprefixer": "^10.4.13",
         "postcss-import": "^15.1.0",
-        "postcss-loader": "^7.0.2"
+        "postcss-loader": "^7.0.2",
+        "tailwindcss": "^3.2.7"
     }
 }
