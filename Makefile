@@ -1,6 +1,7 @@
 # Executables (local)
 DOCKER      = docker
 DOCKER_COMP = docker compose
+YARN = yarn
 
 # Docker containers
 PHP_CONT = $(DOCKER_COMP) exec php
@@ -79,6 +80,9 @@ phpqa: ## Run command with phpqa image. Pass a command with "c=", eg: make phpqa
 cs-fix: ## Run cs-fixer
 	@$(COMPOSER) csfix
 
+lint: ## Rune ESLint
+	@$(YARN) lint
+
 phpstan: ## Run phpstan
 	@$(eval f ?=./src ./tests)
 	@$(PHPQA) phpstan analyze -a ./vendor/autoload.php --level=6 -- $(f)
@@ -86,4 +90,4 @@ phpstan: ## Run phpstan
 security-checker: ## Run php-security-checker
 	@$(PHPQA) local-php-security-checker --no-dev --path=./composer.lock
 
-quality: cs-fix phpstan security-checker ## Run all tests and code quality tools
+quality: cs-fix phpstan lint security-checker ## Run all tests and code quality tools

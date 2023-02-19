@@ -3,6 +3,7 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     <script>
         const eventSource = new EventSource("{{ mercure('https://localhost/test/1')|escape('js') }}", {
             withCredentials: true
@@ -16,6 +17,7 @@
 
 {% block body %}
     <div class="w-6/12 mx-auto pt-12">
+        <example></example>
         <h1>En direct de la vue Twig...</h1>
     </div>
 {% endblock %}

@@ -1,5 +1,9 @@
 # Base Symfony 6.2
 
+## Sommaire
+
+* [Composants Vue](docs/components.md)
+
 ## Composants pré-installés :
 * PHP v.8.1 ;
 * PostgresSQL v.15 ;
