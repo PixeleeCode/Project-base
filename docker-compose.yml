@@ -3,7 +3,7 @@ version: "3.4"
 services:
   redis:
     container_name: ${APP_NAME}_redis
-    image: redis:alpine3.16
+    image: redis:alpine3.17
     restart: unless-stopped
   
   php:
@@ -26,7 +26,7 @@ services:
       - redis
       - database
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-!ChangeMe!}@database:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-14}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-!ChangeMe!}@database:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-15}
       MERCURE_URL: ${CADDY_MERCURE_URL:-http://caddy/.well-known/mercure}
       MERCURE_PUBLIC_URL: ${CADDY_MERCURE_PUBLIC_URL:-http://localhost/.well-known/mercure}
       MERCURE_JWT_SECRET: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
@@ -87,7 +87,7 @@ services:
 
   rabbitmq:
     container_name: ${APP_NAME}_rabbitmq
-    image: rabbitmq:${RABBITMQ_VERSION:-3.7}-management-alpine
+    image: rabbitmq:${RABBITMQ_VERSION:-3.11}-management-alpine
     restart: unless-stopped
     ports: 
       - "5672:5672"
@@ -102,7 +102,7 @@ services:
 ###> doctrine/doctrine-bundle ###
   database:
     container_name: ${APP_NAME}_postgres_sql
-    image: postgres:${POSTGRES_VERSION:-14}-alpine
+    image: postgres:${POSTGRES_VERSION:-15}-alpine
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
       # You should definitely change the password in production
