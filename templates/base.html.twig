@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -14,6 +14,9 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {# La DIV permet à Vue de savoir où travailler #}
+        <div data-vue-app>
+            {% block body %}{% endblock %}
+        </div>
     </body>
 </html>

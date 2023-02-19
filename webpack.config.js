@@ -21,6 +21,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('js/app', './assets/js/app.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -42,13 +43,14 @@ Encore
     .cleanupOutputBeforeBuild()
     .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
+
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
 
     // configure Babel
-    // .configureBabel((config) => {
-    //     config.plugins.push('@babel/a-babel-plugin');
-    // })
+    .configureBabel((config) => {
+      config.plugins.push('@babel/plugin-proposal-class-properties');
+    })
 
     // enables and configure @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
@@ -56,11 +58,22 @@ Encore
         config.corejs = '3.23';
     })
 
-    // enables PostCss support
-    .enablePostCssLoader()
+    // enable PostCSS
+    .enablePostCssLoader((options) => {
+      options.postcssOptions = {
+        config: './postcss.config.js'
+      }
+    })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader(() => {}, {
+      resolveUrlLoader: false,
+    })
+
+    // enables Vue
+    .enableVueLoader(() => {}, {
+      runtimeCompilerBuild: false
+    })
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

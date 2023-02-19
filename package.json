@@ -4,12 +4,19 @@
         "@babel/preset-env": "^7.16.0",
         "@hotwired/stimulus": "^3.0.0",
         "@symfony/stimulus-bridge": "^3.2.0",
-        "@symfony/webpack-encore": "^4.0.0",
+        "@symfony/webpack-encore": "^4.2.0",
         "autoprefixer": "^10.4.13",
         "core-js": "^3.23.0",
-        "postcss": "^8.4.19",
-        "postcss-loader": "^7.0.1",
+        "eslint": "^8.34.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-jsx-a11y": "^6.7.1",
+        "eslint-plugin-vue": "^8.5.0",
+        "postcss": "^8.4.21",
+        "postcss-loader": "^7.0.2",
         "regenerator-runtime": "^0.13.9",
+        "sass": "^1.49.9",
+        "sass-loader": "^13.2.0",
         "tailwindcss": "^3.2.4",
         "webpack": "^5.74.0",
         "webpack-cli": "^4.10.0",
@@ -21,6 +28,23 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "build": "encore production --progress",
+        "lint": "eslint --fix --ext .js"
+    },
+    "browserslist": [
+        "> 0.5%",
+        "last 2 versions",
+        "Firefox ESR",
+        "not dead"
+    ],
+    "dependencies": {
+        "@tailwindcss/postcss7-compat": "npm:@tailwindcss/postcss7-compat",
+        "@vue/compiler-sfc": "^3.2.47",
+        "autoprefixer": "^10.4.4",
+        "postcss-loader": "^7.0.1",
+        "tailwindcss": "^3.2",
+        "vue": "^3.2.47",
+        "vue-loader": "^17.0.1",
+        "vue-template-compiler": "^2.7.14"
     }
 }

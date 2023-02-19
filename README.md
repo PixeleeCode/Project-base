@@ -1,6 +1,10 @@
 # Base Symfony 6.1
 
-Composants pré-installés :
+## Sommaire
+
+* [Composant Vue](docs/components.md)
+
+## Composants pré-installés :
 * PHP v.8.1 ;
 * PostgresSQL v.15 ;
 * Redis v.3.17 :
