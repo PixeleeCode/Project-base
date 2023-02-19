@@ -1,8 +1,4 @@
-# Base Symfony 6.1
-
-## Sommaire
-
-* [Composant Vue](docs/components.md)
+# Base Symfony 6.2
 
 ## Composants pré-installés :
 * PHP v.8.1 ;
