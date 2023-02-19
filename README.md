@@ -86,3 +86,14 @@ La commande ci-dessous permet de tester le code avec : PHP-CS-Fixer, PHPStan et 
 ```shell
 make quality ## Lance des tests de qualités
 ```
+
+## Rector PHP
+
+Rector PHP permet de simplifier la maintenance et la mise à jour des projets PHP. 
+Il s'appuie sur la bibliothèque de parsing PHP-Parser pour effectuer des analyses de code et des transformations automatisées.
+Il peut appliquer des règles de codage spécifiques et corriger automatiquement les erreurs de codage courantes.
+
+```shell
+make rector c=dry-run ## Lance Rector PHP, mais ne modifie rien. Mon simplement les potentiels corrections
+make rector ## Lance Rector PHP et applique les modifications
+```

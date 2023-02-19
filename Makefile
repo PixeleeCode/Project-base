@@ -87,6 +87,10 @@ phpstan: ## Run phpstan
 	@$(eval f ?=./src ./tests)
 	@$(PHPQA) phpstan analyze -a ./vendor/autoload.php --level=6 -- $(f)
 
+rector: ## Run rector
+	@$(eval c ?=)
+	$(DOCKER_COMP) exec -it php vendor/bin/rector process src --$(c)
+
 security-checker: ## Run php-security-checker
 	@$(PHPQA) local-php-security-checker --no-dev --path=./composer.lock
 
