@@ -14,9 +14,6 @@
         {% endblock %}
     </head>
     <body>
-        {# La DIV permet à Vue de savoir où travailler #}
-        <div data-vue-app>
-            {% block body %}{% endblock %}
-        </div>
+        {% block body %}{% endblock %}
     </body>
 </html>
