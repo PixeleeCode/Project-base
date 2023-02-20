@@ -14,7 +14,7 @@
 * RabbitMQ v.3.11 ;
 * TailwindCSS v.3.2.7 avec Webpack Encore.
 
-D'autres éléments comme `ESLint`, `Prettier`, `PHPStan` et `PHPUnit` sont installés.  
+D'autres éléments comme `ESLint`, `Prettier`, `PHPStan`, `PHPUnit` et `Rector PHP` sont installés.  
 Un fichier `make` est présent avec des commandes de bases pour gérer le projet. Pour connaitre les commandes, taper `make help` dans un terminal.
 
 ## Installation
@@ -22,7 +22,7 @@ Un fichier `make` est présent avec des commandes de bases pour gérer le projet
 ```shell
 make start
 make install-cs-fixer
-npm install && npm run build
+yarn install --force && yarn build
 ```
 
 ## Docker
@@ -48,14 +48,14 @@ make fixtures ## Remplis la base de données de... donneés
 
 Les URLs générées :
 ```shell
-https://localhost # Projet Symfony
-https://localhost/.well-known/mercure # Mercure Hub
+https://localhost ## Projet Symfony
+https://localhost/.well-known/mercure ## Mercure Hub
 ```
 
 Les interfaces :
 ```shell
-http://localhost:50622 # RabbitMQ
-http://localhost:1080 # MailCatcher
+http://localhost:50622 ## RabbitMQ
+http://localhost:1080 ## MailCatcher
 ```
 
 Identifiants de l'interface RabbitMQ :
@@ -76,7 +76,12 @@ Il est possible d'utiliser Stimulus UX si besoin.
 
 Lancer le serveur Webpack de dev :
 ```shell
-npm run watch
+yarn watch
+```
+
+Ne pas oublier de build pour la prod. :
+```shell
+yarn build
 ```
 
 ## Qualité du code
