@@ -1,4 +1,4 @@
-# Base Symfony 6.2
+# Projet de base sous Symfony 6.2
 
 ## Sommaire
 
