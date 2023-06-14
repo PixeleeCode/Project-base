@@ -1,5 +1,5 @@
 <template>
-    <h1>Example component</h1>
+    <h1>Example component VueJS</h1>
 </template>
 
 <script>

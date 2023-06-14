@@ -1,50 +1,36 @@
 # Composants Vue
 
-La création d'un composant se fera dans le dossier `assets/js/components`. Par convention, le fichier doit être écrit 
-en UpperCamelCase.
+La création d'un composant se fera dans le dossier `assets/js/components`.  
+Par convention, le fichier doit être écrit en camelCase ou PascalCase.
 
 Structure de base d'un composant :
 
 ```vue
 <template>
-  <div>
-    <!-- Code -->
-  </div>
+    <h1>Example component VueJS</h1>
 </template>
 
 <script>
 export default {
-  name: "NameComponent"
+    name: "Example",
 }
 </script>
 
 <style lang="scss" scoped>
-
+h1 {
+   @apply text-3xl;
+}
 </style>
 ```
 
 ## Déclarer le composant
 
-La déclaration du composant se fera dans le fichier `assets/js/app.js`.
-
-```js
-// assets/js/app.js
-import "../styles/app.scss";
-
-import { createApp } from "vue"
-import Example from "./components/Example.vue";
-import Example2 from "./components/Example2.vue";
-
-const app = createApp({});
-app.component("example", Example);
-app.component("example2", Example2);
-app.mount("#vue-app");
-```
+La déclaration du composant se fera de manière automatique.
 
 ## Utilisation du composant
 
 Utiliser le composant comme vous utiliseriez un élément HTML :
 
 ```html
-<example></example>
+<Example></Example>
 ```
