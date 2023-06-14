@@ -14,7 +14,7 @@ Encore
   // only needed for CDN's or subdirectory deploy
   // .setManifestKeyPrefix('build/')
 
-/*
+    /*
      * ENTRY CONFIG
      *
      * Each entry will result in one JavaScript file (e.g. app.js)
@@ -57,5 +57,7 @@ Encore
   // enable Vue
   .enableVueLoader(() => {}, {
     runtimeCompilerBuild: true,
-  });
+  })
+;
+
 module.exports = Encore.getWebpackConfig();
