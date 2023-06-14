@@ -3,6 +3,7 @@
 ## Sommaire
 
 * [Composants Vue](docs/components.md)
+* [Mercure](docs/mercure.md)
 
 ## Composants pré-installés :
 * PHP v.8.2 ;
