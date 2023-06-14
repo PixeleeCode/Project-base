@@ -1,18 +1,18 @@
-# Projet de base sous Symfony 6.2
+# Projet de base sous Symfony 6.3
 
 ## Sommaire
 
 * [Composants Vue](docs/components.md)
 
 ## Composants pré-installés :
-* PHP v.8.1 ;
+* PHP v.8.2 ;
 * PostgresSQL v.15 ;
 * Redis v.3.17 :
     * Gestion du cache Symfony ;
     * Gestion des sessions ;
-* Caddy v.2 ;
-* RabbitMQ v.3.11 ;
-* TailwindCSS v.3.2.7 avec Webpack Encore.
+* Caddy v.2.7 ;
+* RabbitMQ v.3.12 ;
+* TailwindCSS v.3.3.2 avec Webpack Encore.
 
 D'autres éléments comme `ESLint`, `Prettier`, `PHPStan`, `PHPUnit` et `Rector PHP` sont installés.  
 Un fichier `make` est présent avec des commandes de bases pour gérer le projet. Pour connaitre les commandes, taper `make help` dans un terminal.
@@ -54,7 +54,7 @@ https://localhost/.well-known/mercure ## Mercure Hub
 
 Les interfaces :
 ```shell
-http://localhost:50622 ## RabbitMQ
+http://localhost:15672 ## RabbitMQ
 http://localhost:1080 ## MailCatcher
 ```
 

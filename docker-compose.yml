@@ -87,7 +87,7 @@ services:
 
   rabbitmq:
     container_name: ${APP_NAME}_rabbitmq
-    image: rabbitmq:${RABBITMQ_VERSION:-3.11}-management-alpine
+    image: rabbitmq:${RABBITMQ_VERSION:-3.12}-management-alpine
     restart: unless-stopped
     ports: 
       - "5672:5672"

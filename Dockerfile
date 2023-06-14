@@ -5,8 +5,9 @@
 # https://docs.docker.com/compose/compose-file/#target
 
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
-ARG PHP_VERSION=8.1
-ARG CADDY_VERSION=2
+ARG PHP_VERSION=8.2
+ARG CADDY_VERSION=2.7
+ARG SYMFONY_VERSION=6.3
 
 # Prod image
 FROM php:${PHP_VERSION}-fpm-alpine AS app_php
@@ -16,7 +17,6 @@ ARG STABILITY="stable"
 ENV STABILITY ${STABILITY}
 
 # Allow to select Symfony version
-ARG SYMFONY_VERSION=""
 ENV SYMFONY_VERSION ${SYMFONY_VERSION}
 
 ENV APP_ENV=prod
@@ -44,14 +44,6 @@ RUN set -eux; \
 		opcache \
     ;
 
-# Install Supervisor & Cron.
-#RUN \
-#  apk update && \
-#  apk add supervisor && \
-#  rm -rf /var/cache/apk/*
-
-#COPY ./docker/php/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
 # Imagick
 ADD https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions /usr/local/bin/
 RUN chmod uga+x /usr/local/bin/install-php-extensions && sync && \
@@ -67,18 +59,6 @@ RUN apk add --no-cache rabbitmq-c-dev && \
     mkdir -p /usr/src/php/ext/amqp && \
     curl -fsSL https://pecl.php.net/get/amqp | tar xvz -C "/usr/src/php/ext/amqp" --strip 1 && \
     docker-php-ext-install amqp
-
-# Cron
-#RUN apk add --update php python3 py-pip \
-#    && pip install awscli \
-#    && rm -rf /var/cache/apk/*
-#
-#RUN touch crontab.tmp \
-#    && echo '* * * * * sudo -u www-data /usr/local/bin/php /srv/app/bin/console scheduler:execute > /proc/1/fd/1 2>/proc/1/fd/2' > crontab.tmp \
-#    && crontab crontab.tmp \
-#    && rm -rf crontab.tmp
-#
-#CMD ["/usr/sbin/crond", "-f", "-d", "0"]
 
 # PostgreSQL
 RUN apk add --no-cache --virtual .pgsql-deps postgresql-dev; \
@@ -151,14 +131,12 @@ RUN rm -f .env.local.php
 # Build Caddy with the Mercure and Vulcain modules
 FROM caddy:${CADDY_VERSION}-builder-alpine AS app_caddy_builder
 
-RUN xcaddy build \
-	--with github.com/dunglas/mercure \
+RUN xcaddy build v2.6.4 \
 	--with github.com/dunglas/mercure/caddy \
-	--with github.com/dunglas/vulcain \
 	--with github.com/dunglas/vulcain/caddy
 
 # Caddy image
-FROM caddy:${CADDY_VERSION} AS app_caddy
+FROM caddy:${CADDY_VERSION}-alpine AS app_caddy
 
 WORKDIR /srv/app
 
