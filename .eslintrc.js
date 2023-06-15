@@ -2,17 +2,16 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    node: true,
+    node: true
   },
-  extends: "airbnb-base",
-  overrides: [
-  ],
+  extends: ["airbnb-base", "plugin:storybook/recommended", "plugin:storybook/recommended"],
+  overrides: [],
   parserOptions: {
     ecmaVersion: "latest",
-    sourceType: "module",
+    sourceType: "module"
   },
   rules: {
     semi: ["error", "always"],
-    quotes: ["error", "double"],
-  },
+    quotes: ["error", "double"]
+  }
 };
