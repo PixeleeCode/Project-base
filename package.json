@@ -14,7 +14,6 @@
     "@storybook/vue3-webpack5": "^7.0.20",
     "@symfony/stimulus-bridge": "^3.2.0",
     "@symfony/webpack-encore": "^4.0.0",
-    "@vue/compiler-sfc": "^3.2.47",
     "autoprefixer": "^10.4.13",
     "core-js": "^3.23.0",
     "eslint": "^7.32.0 || ^8.2.0",
