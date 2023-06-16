@@ -195,7 +195,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/clock" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php83" />
-      <path value="$PROJECT_DIR$/tools/php-cs-fixer/vendor/phpstan/phpstan" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

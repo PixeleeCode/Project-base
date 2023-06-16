@@ -11,7 +11,7 @@ REDIS_CONT = $(DOCKER_COMP) exec redis
 PHP      = $(PHP_CONT) php
 COMPOSER = $(PHP_CONT) composer
 SYMFONY  = $(PHP_CONT) bin/console
-PHPQA    = $(DOCKER) run --init -it --rm -v "$(shell pwd):/project" -v "$(shell pwd)/tmp-phpqa:/tmp" -w /project jakzal/phpqa:php8.1-alpine
+PHPQA    = $(DOCKER) run --init -it --rm -v "$(shell pwd):/project" -v "$(shell pwd)/tmp-phpqa:/tmp" -w /project jakzal/phpqa:php8.2-alpine
 
 # Misc
 .DEFAULT_GOAL = help
