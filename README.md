@@ -1,5 +1,7 @@
 # Projet de base sous Symfony 6.3
 
+![welcome.png](public/welcome.png)
+
 ## Sommaire
 
 * [Mercure](docs/mercure.md)
