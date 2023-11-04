@@ -22,6 +22,7 @@ services:
       timeout: 3s
       retries: 3
       start_period: 30s
+      test: 30s
     depends_on:
       - redis
       - database
