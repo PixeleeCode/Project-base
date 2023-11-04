@@ -2,7 +2,6 @@
 
 ## Sommaire
 
-* [Composants Vue](docs/components.md)
 * [Mercure](docs/mercure.md)
 
 ## Composants pré-installés :
@@ -25,6 +24,8 @@ make start
 make install-cs-fixer
 yarn install --force && yarn build
 ```
+
+> Après installation des conteneurs Docker, patienter quelques minutes que le conteneur PHP finissent l'installation avec Composer en autres.
 
 ## Docker
 
@@ -100,6 +101,6 @@ Il s'appuie sur la bibliothèque de parsing PHP-Parser pour effectuer des analys
 Il peut appliquer des règles de codage spécifiques et corriger automatiquement les erreurs de codage courantes.
 
 ```shell
-make rector c=dry-run ## Lance Rector PHP, mais ne modifie rien. Mon simplement les potentiels corrections
+make rector c=dry-run ## Lance Rector PHP, mais ne modifie rien. Montre simplement les potentiels corrections
 make rector ## Lance Rector PHP et applique les modifications
 ```

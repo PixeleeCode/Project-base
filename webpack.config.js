@@ -55,9 +55,9 @@ Encore
   })
 
   // enable Vue
-  .enableVueLoader(() => {}, {
+  /*.enableVueLoader(() => {}, {
     runtimeCompilerBuild: true,
-  })
+  })*/
 ;
 
 module.exports = Encore.getWebpackConfig();
