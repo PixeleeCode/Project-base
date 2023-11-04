@@ -14,12 +14,14 @@ Encore
   // only needed for CDN's or subdirectory deploy
   // .setManifestKeyPrefix('build/')
 
-    /*
-     * ENTRY CONFIG
-     *
-     * Each entry will result in one JavaScript file (e.g. app.js)
-     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
-     */
+  .enableStimulusBridge("./assets/controllers.json")
+
+  /*
+   * ENTRY CONFIG
+   *
+   * Each entry will result in one JavaScript file (e.g. app.js)
+   * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
+   */
   .addEntry("app", "./assets/app.js")
 
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

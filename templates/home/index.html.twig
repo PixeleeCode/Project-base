@@ -16,7 +16,13 @@
 {% endblock %}
 
 {% block body %}
-    <div class="w-6/12 mx-auto pt-12">
-        <h1>En direct de la vue Twig...</h1>
-    </div>
+    <section>
+        <h1 class="text-2xl text-center leading-tight mb-4">
+            <span class="block text-6xl mb-4">🥳</span>
+            Welcome to
+            <span class="block font-bold uppercase">Project Symfony 6.3</span>
+        </h1>
+
+        <div class="text-center" {{ stimulus_controller('hello') }}></div>
+    </section>
 {% endblock %}
