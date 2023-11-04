@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,
     node: true
   },
-  extends: ["airbnb-base", "plugin:storybook/recommended", "plugin:storybook/recommended"],
+  extends: ["airbnb-base"],
   overrides: [],
   parserOptions: {
     ecmaVersion: "latest",
