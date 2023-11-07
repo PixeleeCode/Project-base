@@ -1,19 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        const eventSource = new EventSource("{{ mercure('https://localhost/test/1')|escape('js') }}", {
-            withCredentials: true
-        });
-
-        eventSource.onmessage = event => {
-            console.log(event.data);
-        }
-    </script>
-{% endblock %}
+{% block title %}Hello project Symfony! 😍{% endblock %}
 
 {% block body %}
     <section>
