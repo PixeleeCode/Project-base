@@ -8,6 +8,7 @@
 /vendor/
 /tmp-phpqa/
 /tools/php-cs-fixer/vendor/
+/.idea/
 .DS_Store
 ###< symfony/framework-bundle ###
 
