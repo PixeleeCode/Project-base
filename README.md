@@ -1,4 +1,4 @@
-# Projet de base sous Symfony 6.3
+# Projet Symfony 6.3 / Docker
 
 ![welcome.png](public/welcome.png)
 
