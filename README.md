@@ -4,6 +4,7 @@
 
 ## Sommaire
 
+* [Fixtures](docs/fixtures.md)
 * [Mercure](docs/mercure.md)
 
 ## Composants pré-installés :
