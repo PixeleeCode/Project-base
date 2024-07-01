@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello project Symfony! 😍{% endblock %}
+
+{% block body %}
+    <section class="bg-slate-100 rounded-lg mt-20 w-6/12 mx-auto py-12 px-24 shadow-md">
+        <p class="mb-1 text-violet-700 font-medium">Welcome to</p>
+        <h1 class="text-4xl font-bold">Symfony 7.1 🥳</h1>
+
+        <div class="h-0.5 bg-slate-200 my-6"></div>
+
+        <p class="font-bold text-lg mb-4">Structure :</p>
+        <ul class="ml-8 list-disc leading-7">
+            <li>Symfony 7.1</li>
+            <li>FrakenPHP</li>
+            <li>Mercure</li>
+            <li>PHP 8.3</li>
+            <li>
+                Redis :
+                <ul class="ml-8 list-decimal">
+                    <li>Gestion du cache Symfony</li>
+                    <li>Gestion des sessions</li>
+                </ul>
+            </li>
+            <li>RabbitMQ</li>
+            <li>AssetMapper</li>
+            <li>TailwindCSS</li>
+            <li>MailPit</li>
+        </ul>
+
+        <div class="h-0.5 bg-slate-200 my-6"></div>
+
+        <p>Modifier cette page en modifiant le fichier :</p>
+        <div class="bg-slate-200 text-slate-600 text-sm mt-2 p-4 rounded font-mono">
+            ../../src/Controller/HomeController.php
+        </div>
+    </section>
+{% endblock %}
