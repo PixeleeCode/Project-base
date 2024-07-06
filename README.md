@@ -27,9 +27,15 @@ make start
 Compiler et lancer le serveur Docker :
 ```shell
 make build ## compile les containers
-make up-dev ## Lance les containers en mode dev.
+make up ## Lance les containers en mode dev.
 make down ## Arrête les containers
+make install-cs-fixer ## Installe PHP-CS-Fixer
 # make start ## Regroupe les commandes "make build" et "make up"
+```
+
+Pour lancer les commandes Docker en mode "production", il faut ajouter une variable :
+```shell
+make PROD=1 start ## Lance les containers en mode production
 ```
 
 ## Base de données

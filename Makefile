@@ -14,7 +14,15 @@ PHPQA = $(DOCKER) run --init -it --rm -v "$(shell pwd):/project" -v "$(shell pwd
 
 # Misc
 .DEFAULT_GOAL = help
-.PHONY        : help build up start down logs sh composer vendor sf cc test
+.PHONY        : help build up down start restart logs sh bash test install-cs-fixer composer vendor sf cc import-map assets-compile assets-watch assets-minify reset-db fixtures reset-db-dev reset-db-prod phpqa cs-fix phpstan quality
+
+# Variable to include additional docker-compose files
+COMPOSE_FILES =
+
+# Include the dev compose file if DEV is set
+ifeq ($(PROD), 1)
+    COMPOSE_FILES += compose.prod.yaml
+endif
 
 ## —— 🎵 🐳 The Symfony Docker Makefile 🐳 🎵 ——————————————————————————————————
 help: ## Outputs this help screen
@@ -22,22 +30,25 @@ help: ## Outputs this help screen
 
 ## —— Docker 🐳 ————————————————————————————————————————————————————————————————
 build: ## Builds the Docker images
-	@$(DOCKER_COMP) build --pull --no-cache
+	@$(DOCKER_COMP) \
+		build --pull --no-cache
 
-up-dev: ## Start the docker hub in detached mode (no logs)
-	@$(DOCKER_COMP) up --detach
+up: ## Start the Docker containers in detached mode
+	@$(DOCKER_COMP) \
+		$(foreach file, $(COMPOSE_FILES), -f $(file)) \
+		up --detach --force-recreate --remove-orphans
 
-up-prod:
-	@$(DOCKER_COMP) -f docker-compose.yml -f docker-compose.prod.yml up -d
+## Stop the Docker containers
+down:
+	$(DOCKER_COMP) \
+		$(foreach file, $(COMPOSE_FILES), -f $(file)) \
+		down --remove-orphans
 
-start-dev: build up-dev assets-compile ## Build and start the containers
-start-prod: build up-prod assets-minify ## Build and start the containers in mode prod
+## Build and start the containers
+start: build up import-map assets-compile
 
-down: ## Stop the docker hub
-	@$(DOCKER_COMP) down --remove-orphans
-
-restart-dev: down up-dev ## Restart the docker hub
-restart-prod: down up-prod ## Restart the docker hub
+## Restart the Docker containers
+restart: down up ## Restart the docker hub
 
 logs: ## Show live logs
 	@$(DOCKER_COMP) logs --tail=0 --follow
@@ -51,6 +62,9 @@ bash: ## Connect to the FrankenPHP container via bash so up and down arrows go t
 test: ## Start tests with phpunit, pass the parameter "c=" to add options to phpunit, example: make test c="--group e2e --stop-on-failure"
 	@$(eval c ?=)
 	@$(DOCKER_COMP) exec -e APP_ENV=test php bin/phpunit $(c)
+
+install-cs-fixer: ## Install php-cs-fixer
+	@$(COMPOSER) install --working-dir=tools/php-cs-fixer
 
 ## —— Composer 🧙 ——————————————————————————————————————————————————————————————
 composer: ## Run composer, pass the parameter "c=" to run a given command, example: make composer c='req symfony/orm-pack'
@@ -70,9 +84,12 @@ cc: ## Clear the cache Symfony & Redis
 	@$(SYMFONY) c:c
 	@$(REDIS_CONT) redis-cli FLUSHALL
 
+import-map: ## Import map
+	@$(SYMFONY) importmap:install
+
 assets-compile: ## Compile assets
-	@$(PHP_LOCAL) tailwind:build
-	@$(PHP_LOCAL) asset-map:compile
+	@$(SYMFONY) tailwind:build
+	@$(SYMFONY) asset-map:compile
 
 assets-watch: ## Watch assets for changes
 	@$(PHP_LOCAL) tailwind:build --watch

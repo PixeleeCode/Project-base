@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello project Symfony! 😍{% endblock %}
+
+{% block body %}
+    <section class="bg-slate-100 rounded-lg mt-20 w-6/12 mx-auto py-12 px-24 shadow-md">
+        <h1 class="text-4xl font-bold">Mercure envoi ✉️</h1>
+
+        <div class="h-0.5 bg-slate-200 my-6"></div>
+
+        <p class="text-lg mb-4">
+            Garder cette page ouverte et ouvrez <a href="{{ path('app_mercure_reception') }}">celle-ci</a> dans un
+            nouvel onglet. Ensuite, revenez sur cette page et actualiser là. La deuxième onglet se mettra à jour
+            avec une information envoyé via Mercure depuis cette page.
+        </p>
+    </section>
+{% endblock %}

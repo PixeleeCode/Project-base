@@ -29,6 +29,7 @@
         "symfony/messenger": "7.1.*",
         "symfony/runtime": "7.1.*",
         "symfony/stimulus-bundle": "^2.18",
+        "symfony/translation": "7.1.*",
         "symfony/twig-bundle": "7.1.*",
         "symfony/yaml": "7.1.*",
         "symfonycasts/tailwind-bundle": "^0.5.3",

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello project Symfony! 😍{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        const eventSource = new EventSource("{{ mercure('https://localhost/test/1')|escape('js') }}", {
+            withCredentials: true /** Mettre à true si le message est privé */
+        })
+
+        eventSource.onmessage = event => {
+            const eventString = event.data;
+            const json = JSON.parse(eventString)
+
+            document.querySelector('#message').innerHTML = json.status
+        }
+    </script>
+{% endblock %}
+
+{% block body %}
+    <section class="bg-slate-100 rounded-lg mt-20 w-6/12 mx-auto py-12 px-24 shadow-md">
+        <h1 class="text-4xl font-bold">Mercure réception 📨</h1>
+
+        <div class="h-0.5 bg-slate-200 my-6"></div>
+
+        <p id="message" class="text-lg mb-4"></p>
+    </section>
+{% endblock %}
