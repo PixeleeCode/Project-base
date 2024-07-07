@@ -45,7 +45,8 @@ down:
 		down --remove-orphans
 
 ## Build and start the containers
-start: build up import-map assets-compile
+start: build up import-map
+	@$(MAKE) assets-compile
 
 ## Restart the Docker containers
 restart: down up ## Restart the docker hub

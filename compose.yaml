@@ -21,6 +21,7 @@ services:
       - caddy_data:/data
       - caddy_config:/config
       - var_log:/app/var/log
+      - var_tailwind:/app/var/tailwind
     ports:
       # HTTP
       - target: 80
@@ -102,3 +103,4 @@ volumes:
   database_data:
   rabbitmq_data:
   var_log:
+  var_tailwind:
