@@ -7,7 +7,7 @@
 /var/
 /vendor/
 /.idea/
-/tools/vendor/
+/tools/php-cs-fixer/vendor/
 ###< symfony/framework-bundle ###
 
 ###> symfony/asset-mapper ###
