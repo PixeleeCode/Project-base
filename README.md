@@ -1,4 +1,4 @@
-# Projet Symfony 6.3 / Docker
+# Projet Symfony 7.1 / Docker
 
 ![welcome.png](public/welcome.png)
 
@@ -29,6 +29,7 @@ Compiler et lancer le serveur Docker :
 make build ## compile les containers
 make up ## Lance les containers en mode dev.
 make down ## Arrête les containers
+make assets-compile ## Compile tous les assets la premières fois
 make install-cs-fixer ## Installe PHP-CS-Fixer
 # make start ## Regroupe les commandes "make build" et "make up"
 ```
