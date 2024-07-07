@@ -60,9 +60,6 @@ services:
 
   messenger:
     container_name: messenger
-    build:
-      context: .
-      target: frankenphp_dev
     image: ${IMAGES_PREFIX:-}app-php
     restart: unless-stopped
     command: [ "php", "bin/console", "messenger:consume", "async", "-vv", "--limit=10", "--time-limit=60", "--memory-limit=128M" ]
